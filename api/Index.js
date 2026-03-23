@@ -24,9 +24,12 @@ app.post('/register', async (req, res) => {
         console.log(e);
 
     }
-    
-    
-    
+});
+
+app.post('/login', async (req, res) => {
+    const {username, password} = req.body;
+    const userDoc = await User.findOne({username});
+    const passOk = bcrypt.compareSync(password, userDoc.password);
 });
 app.listen(4000);
 //mongodb+srv://ashfinrahman:MYEz8b7VhrgbfNZd@cluster0.dlxgojx.mongodb.net/?appName=Cluster0
